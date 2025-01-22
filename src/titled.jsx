@@ -1,107 +1,133 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react"; 
+import { motion } from "framer-motion";
+import Section from "./Section"; // Ensure this path is correct
 
-const Section = ({ children, bgColor, textColor, id }) => (
-  <motion.section
-    id={id}
-    style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '2rem',
-      backgroundColor: bgColor,
-      color: textColor,
-    }}
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.5 }}
-  >
-    <div style={{ maxWidth: '800px', width: '100%', textAlign: 'center' }}>
-      {children}
-    </div>
-  </motion.section>
-);
-
-const NavButton = ({ targetId, children }) => {
-  const handleClick = () => {
-    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-  };
+const ProjectCard = ({ title, description, link, bgImage }) => {
+  const [hovered, setHovered] = useState(false); // Track hover state
 
   return (
-    <button
-      onClick={handleClick}
+    <motion.div
       style={{
-        backgroundColor: 'transparent',
-        color: 'currentColor',
-        padding: '0.5rem 1rem',
-        margin: '0 0.5rem',
-        border: '1px solid currentColor',
-        borderRadius: '0.25rem',
-        cursor: 'pointer',
-        transition: 'background-color 0.3s, color 0.3s',
+        position: "relative",
+        borderRadius: "0.5rem",
+        overflow: "hidden",
+        cursor: "pointer",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        height: "300px",
       }}
-      onMouseEnter={(e) => {
-        e.target.style.backgroundColor = 'white';
-        e.target.style.color = 'black';
-      }}
-      onMouseLeave={(e) => {
-        e.target.style.backgroundColor = 'transparent';
-        e.target.style.color = 'currentColor';
-      }}
+      whileHover={{ scale: 1.05 }} // Card hover effect only
+      transition={{ type: "spring", stiffness: 300 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      {children}
-    </button>
+      {/* Background Image */}
+      <div
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100%",
+          height: "100%",
+          filter: "brightness(0.8)",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 1,
+        }}
+      ></div>
+
+      {/* Hover Icon Box */}
+      {hovered && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 3,
+            width: "50px", // Confined box size
+            height: "50px", // Confined box size
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+          onClick={() => window.open(link, "_blank")} // Open link in a new tab
+        >
+          {/* Common Icon */}
+          <img
+            src="icon.png" // Update with your icon's file path
+            alt="icon"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </div>
+      )}
+
+      {/* Bottom Rectangle for Title and Description */}
+      <div
+        style={{
+          width: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
+          color: "white",
+          height: "80px",
+          position: "absolute",
+          bottom: 0,
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          padding: "0.5rem",
+          boxSizing: "border-box",
+        }}
+      >
+        <h3 style={{ fontSize: "1.25rem", fontWeight: "bold", margin: "0.25rem 0" }}>
+          {title}
+        </h3>
+        <p style={{ fontSize: "1rem", margin: 0 }}>{description}</p>
+      </div>
+    </motion.div>
   );
 };
 
-const ProjectCard = ({ title, description }) => (
-  <motion.div
-    style={{
-      backgroundColor: 'white',
-      padding: '1.5rem',
-      borderRadius: '0.5rem',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-      color: 'black',
-    }}
-    whileHover={{ scale: 1.05 }}
-    transition={{ type: 'spring', stiffness: 300 }}
-  >
-    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-      {title}
-    </h3>
-    <p>{description}</p>
-  </motion.div>
-);
-
 const TitledWebsite = () => {
   return (
-    <div style={{ fontFamily: 'sans-serif' }}>
+    <div style={{ fontFamily: "sans-serif" }}>
+      {/* Header Section */}
       <header
         style={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'white',
-          color: 'black',
-          padding: '2rem',
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "white",
+          color: "black",
+          padding: "2rem",
         }}
       >
         <motion.img
-          src="logot.png" 
+          src="logot.png"
           alt="TITLED logo"
-          style={{ marginBottom: '2rem' }}
+          style={{ marginBottom: "2rem" }}
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         />
-        {/* Downward Arrow Image */}
         <img
-          src="down.png" 
+          src="down.png"
           alt="Scroll Down Arrow"
-          style={{ width: '50px', height: '50px', marginTop: '3rem', animation: 'bounce 1s infinite' }} // Increased marginTop for more space
+          style={{
+            width: "50px",
+            height: "50px",
+            marginTop: "3rem",
+            animation: "bounce 1s infinite",
+          }}
         />
         <style>
           {`
@@ -116,70 +142,157 @@ const TitledWebsite = () => {
       {/* Sticky Navbar */}
       <nav
         style={{
-          position: 'sticky',
+          position: "sticky",
           top: 0,
-          backgroundColor: 'white',
+          backgroundColor: "white",
           zIndex: 1000,
-          padding: '1rem 0',
-          boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+          padding: "1rem 0",
+          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
         }}
       >
         <motion.div
-          style={{ display: 'flex', justifyContent: 'center' }}
+          style={{ display: "flex", justifyContent: "center" }}
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <NavButton targetId="about">About</NavButton>
-          <NavButton targetId="projects">Works</NavButton>
-          <NavButton targetId="contact">Contact</NavButton>
+          <button
+            onClick={() => document.getElementById("about").scrollIntoView({ behavior: "smooth" })}
+            style={{
+              backgroundColor: "transparent",
+              color: "currentColor",
+              padding: "0.5rem 1rem",
+              margin: "0 0.5rem",
+              border: "1px solid currentColor",
+              borderRadius: "0.25rem",
+              cursor: "pointer",
+            }}
+          >
+            About
+          </button>
+          <button
+            onClick={() => document.getElementById("projects").scrollIntoView({ behavior: "smooth" })}
+            style={{
+              backgroundColor: "transparent",
+              color: "currentColor",
+              padding: "0.5rem 1rem",
+              margin: "0 0.5rem",
+              border: "1px solid currentColor",
+              borderRadius: "0.25rem",
+              cursor: "pointer",
+            }}
+          >
+            Works
+          </button>
+          <button
+            onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}
+            style={{
+              backgroundColor: "transparent",
+              color: "currentColor",
+              padding: "0.5rem 1rem",
+              margin: "0 0.5rem",
+              border: "1px solid currentColor",
+              borderRadius: "0.25rem",
+              cursor: "pointer",
+            }}
+          >
+            Contact
+          </button>
         </motion.div>
       </nav>
 
+      {/* About Section */}
       <Section id="about" bgColor="black" textColor="white">
-        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>About Us</h2>
-        <p style={{ fontSize: '1.25rem' }}>
-          TITLED is a graphic and brand design agency dedicated to creating bold, modern,
-          and impactful designs for our clients. We believe in the power of visual
-          communication to transform businesses and captivate audiences.
+        <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}>About Us</h2>
+        <p style={{ fontSize: "1.25rem" }}>
+          TITLED is a graphic and brand design agency dedicated to creating bold,
+          modern, and impactful designs for our clients. We believe in the power of
+          visual communication to transform businesses and captivate audiences.
         </p>
       </Section>
 
+      {/* Past Works Section */}
       <Section id="projects" bgColor="white" textColor="black">
-        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>Past Works</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
+        <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}>Past Works</h2>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: "1.5rem",
+          }}
+        >
           <ProjectCard
-            title="Lorem Ipsum"
-            description="Lorem Ipsum"
+            title="Competitive Math Club"
+            description="Exploring innovative solutions for problem-solving."
+            link="https://competitivemathclub.vercel.app/"
+            bgImage="comp_math.png"
           />
           <ProjectCard
-            title="Lorem Ipsum"
-            description="Lorem Ipsum"
+            title="Hearts of Baking"
+            description="Home-based, student-owned bakery."
+            link="https://heartsofbaking.vercel.app/"
+            bgImage="baking.png"
           />
           <ProjectCard
-            title="Lorem Ipsum"
-            description="Lorem Ipsum"
+            title="AI Pioneers"
+            description="Artificial intelligence exposure for high-schoolers."
+            link="https://aipioneers.vercel.app/"
+            bgImage="ai.png"
           />
           <ProjectCard
-            title="Lorem Ipsum"
-            description="Lorem Ipsum"
+            title="CHS Bike Club"
+            description="Safe space for finding people to bike with."
+            link="https://chs-bike-club.vercel.app/"
+            bgImage="bike.png"
           />
+          
+         
         </div>
       </Section>
 
-      <Section id="contact" bgColor="black" textColor="white">
-        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>Contact Us</h2>
-        <p style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>
-          Ready to elevate your brand? Get in touch with us to discuss your next project.
-        </p>
-        <iframe
-          //src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true" // Replace with your Google Form ID
-          src="https://docs.google.com/forms" 
-          style={{ width: '100%', height: '500px', border: 'none' }}
-        >
-          Loading Google Form...
-        </iframe>
-      </Section>
+    {/* Contact Section */}
+{/* Contact Section */}
+<Section id="contact" bgColor="black" textColor="white">
+  <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}>Contact Us</h2>
+  <p style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>
+    Ready to elevate your brand? Get in touch with us to discuss your next project.
+  </p>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    {/* Rounded Button with Mail Icon */}
+    <button
+      style={{
+        backgroundColor: "white", // Button background color
+        border: "none",
+        borderRadius: "50%", // Rounded button
+        width: "50px", // Button size
+        height: "50px", // Button size
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: "pointer",
+        fontSize: "2rem", // Icon size
+        color: "black", // Icon color
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Optional shadow
+      }}
+      onClick={() =>
+        window.open(
+          "https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=titled.designs@gmail.com",
+          "_blank"
+        )
+      }
+    >
+      ✉
+    </button>
+  </div>
+</Section>
+
+
     </div>
   );
 };
