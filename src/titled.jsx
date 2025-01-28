@@ -128,6 +128,9 @@ const TitledWebsite = () => {
             marginTop: "3rem",
             animation: "bounce 1s infinite",
           }}
+          onClick={() =>
+            document.getElementById("about").scrollIntoView({ behavior: "smooth" })
+          }
         />
         <style>
           {`
@@ -141,69 +144,98 @@ const TitledWebsite = () => {
 
       {/* Sticky Navbar */}
       <nav
-        style={{
-          position: "sticky",
-          top: 0,
-          backgroundColor: "white",
-          zIndex: 1000,
-          padding: "1rem 0",
-          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-        }}
-      >
-        <motion.div
-          style={{ display: "flex", justifyContent: "center" }}
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <button
-            onClick={() => document.getElementById("about").scrollIntoView({ behavior: "smooth" })}
-            style={{
-              backgroundColor: "transparent",
-              color: "currentColor",
-              padding: "0.5rem 1rem",
-              margin: "0 0.5rem",
-              border: "1px solid currentColor",
-              borderRadius: "0.25rem",
-              cursor: "pointer",
-            }}
-          >
-            About
-          </button>
-          <button
-            onClick={() => document.getElementById("projects").scrollIntoView({ behavior: "smooth" })}
-            style={{
-              backgroundColor: "transparent",
-              color: "currentColor",
-              padding: "0.5rem 1rem",
-              margin: "0 0.5rem",
-              border: "1px solid currentColor",
-              borderRadius: "0.25rem",
-              cursor: "pointer",
-            }}
-          >
-            Works
-          </button>
-          <button
-            onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}
-            style={{
-              backgroundColor: "transparent",
-              color: "currentColor",
-              padding: "0.5rem 1rem",
-              margin: "0 0.5rem",
-              border: "1px solid currentColor",
-              borderRadius: "0.25rem",
-              cursor: "pointer",
-            }}
-          >
-            Contact
-          </button>
-        </motion.div>
-      </nav>
+  style={{
+    position: "sticky",
+    top: 0,
+    backgroundColor: "white",
+    zIndex: 1000,
+    padding: "1rem 0",
+    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+>
+  <motion.div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexWrap: "wrap", // Allows wrapping on smaller screens
+      gap: "1rem", // Space between buttons
+      width: "90%", // Adjust width to prevent overcrowding
+    }}
+    initial={{ y: 50, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+  >
+    <button
+      onClick={() => document.getElementById("about").scrollIntoView({ behavior: "smooth" })}
+      style={{
+        backgroundColor: "transparent",
+        color: "currentColor",
+        padding: "0.5rem 1rem",
+        margin: "0",
+        border: "1px solid currentColor",
+        borderRadius: "0.25rem",
+        cursor: "pointer",
+        fontSize: "1rem", // Ensure font is readable on mobile
+      }}
+    >
+      About Us
+    </button>
+    <button
+      onClick={() => document.getElementById("projects").scrollIntoView({ behavior: "smooth" })}
+      style={{
+        backgroundColor: "transparent",
+        color: "currentColor",
+        padding: "0.5rem 1rem",
+        margin: "0",
+        border: "1px solid currentColor",
+        borderRadius: "0.25rem",
+        cursor: "pointer",
+        fontSize: "1rem", // Ensure font is readable on mobile
+      }}
+    >
+      Past Works
+    </button>
+    <button
+      onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}
+      style={{
+        backgroundColor: "transparent",
+        color: "currentColor",
+        padding: "0.5rem 1rem",
+        margin: "0",
+        border: "1px solid currentColor",
+        borderRadius: "0.25rem",
+        cursor: "pointer",
+        fontSize: "1rem", // Ensure font is readable on mobile
+      }}
+    >
+      Contact Us
+    </button>
+  </motion.div>
+
+  {/* Inline Media Query for Mobile Scaling */}
+  <style>
+    {`
+      @media (max-width: 768px) {
+        nav {
+          padding: 0.5rem;
+        }
+        button {
+          font-size: 0.9rem;
+          padding: 0.4rem 0.8rem;
+        }
+      }
+    `}
+  </style>
+</nav>
+
 
       {/* About Section */}
       <Section id="about" bgColor="black" textColor="white">
-        <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}>About Us</h2>
+        <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
         <p style={{ fontSize: "1.25rem" }}>
           TITLED is a graphic and brand design agency dedicated to creating bold,
           modern, and impactful designs for our clients. We believe in the power of
@@ -213,7 +245,7 @@ const TitledWebsite = () => {
 
       {/* Past Works Section */}
       <Section id="projects" bgColor="white" textColor="black">
-        <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}>Past Works</h2>
+        <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
         <div
           style={{
             display: "grid",
@@ -253,10 +285,20 @@ const TitledWebsite = () => {
     {/* Contact Section */}
 {/* Contact Section */}
 <Section id="contact" bgColor="black" textColor="white">
-  <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}>Contact Us</h2>
+  <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
   <p style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>
-    Ready to elevate your brand? Get in touch with us to discuss your next project.
-  </p>
+  Ready to elevate your brand? Get in{" "}
+  <a
+    href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=titled.designs@gmail.com" // Replace with your URL
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ color: "cyan", textDecoration: "underline", cursor: "pointer" }}
+  >
+    touch
+  </a>{" "}
+  with us to discuss your next project.
+</p>
+
   <div
     style={{
       display: "flex",
@@ -265,32 +307,12 @@ const TitledWebsite = () => {
     }}
   >
     {/* Rounded Button with Mail Icon */}
-    <button
-      style={{
-        backgroundColor: "white", // Button background color
-        border: "none",
-        borderRadius: "50%", // Rounded button
-        width: "50px", // Button size
-        height: "50px", // Button size
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        cursor: "pointer",
-        fontSize: "2rem", // Icon size
-        color: "black", // Icon color
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Optional shadow
-      }}
-      onClick={() =>
-        window.open(
-          "https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=titled.designs@gmail.com",
-          "_blank"
-        )
-      }
-    >
-      ✉
-    </button>
+   
   </div>
+
 </Section>
+
+
 
 
     </div>
