@@ -1,27 +1,20 @@
 import React, { useState } from "react"; 
 import { motion } from "framer-motion";
 import Section from "./Section"; // Ensure this path is correct
-<style>
-  {`
-    body {
-      overflow-x: hidden; /* 🔥 Prevents sideways scrolling */
-    }
-  `}
-</style>
+
 const ProjectCard = ({ title, description, link, bgImage }) => {
   const [hovered, setHovered] = useState(false); // Track hover state
 
   return (
     <motion.div
-    style={{
-      position: "relative",
-      borderRadius: "0.5rem",
-      overflow: "hidden",
-      cursor: "pointer",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-      height: "300px",
-      width: "100%", // 🔥 Forces the card to fill available space
-    }}
+      style={{
+        position: "relative",
+        borderRadius: "0.5rem",
+        overflow: "hidden",
+        cursor: "pointer",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        height: "300px",
+      }}
       whileHover={{ scale: 1.05 }} // Card hover effect only
       transition={{ type: "spring", stiffness: 300 }}
       onMouseEnter={() => setHovered(true)}
@@ -104,7 +97,7 @@ const ProjectCard = ({ title, description, link, bgImage }) => {
 
 const TitledWebsite = () => {
   return (
-    <div style={{ fontFamily: "sans-serif", width: "100vw", overflowX: "hidden"  }}>
+    <div style={{ fontFamily: "sans-serif" }}>
       {/* Header Section */}
       <header
         style={{
@@ -242,7 +235,7 @@ const TitledWebsite = () => {
 
 
       {/* About Section */}
-      <Section id="about" bgColor="black" textColor="white" style={{ width: "100%", margin: "0 auto" }}>
+      <Section id="about" bgColor="black" textColor="white">
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
         <p style={{ fontSize: "1.25rem" }}>
           TITLED is a graphic and brand design agency dedicated to creating bold,
@@ -252,28 +245,13 @@ const TitledWebsite = () => {
       </Section>
 
       {/* Past Works Section */}
-      <Section id="projects" bgColor="white" textColor="black" style={{ width: "100%", margin: "0 auto" }}>
-      <style>
-  {`
-    @media (max-width: 768px) {
-      #projects div {
-        display: grid;
-        grid-template-columns: 1fr; /* 🔥 Forces a single-column layout */
-        gap: 1rem;
-        justify-content: center;
-      }
-    }
-  `}
-</style>
+      <Section id="projects" bgColor="white" textColor="black">
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
             gap: "1.5rem",
-            width: "100%", // 🔥 Fixes alignment issues
-            maxWidth: "100%", 
-            justifyContent: "center", // 🔥 Centers the cards
           }}
         >
           <ProjectCard
@@ -307,7 +285,7 @@ const TitledWebsite = () => {
 
     {/* Contact Section */}
 {/* Contact Section */}
-<Section id="contact" bgColor="black" textColor="white" style={{ width: "100%", margin: "0 auto" }}>
+<Section id="contact" bgColor="black" textColor="white">
   <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
   <p style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>
   Ready to elevate your brand? Get in{" "}
