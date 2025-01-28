@@ -112,15 +112,21 @@ const TitledWebsite = () => {
           alignItems: "center",
         }}
       >
-        <motion.img
-          src="logot.png"
-          alt="TITLED logo"
-          style={{ marginBottom: "2rem" }}
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          draggable="false"
-        />
+      <motion.img
+  src="logot.png"
+  alt="TITLED logo"
+  style={{ 
+    marginBottom: "2rem",
+    maxWidth: "80%",  // 🔥 Ensures it never exceeds 80% of screen width
+    height: "auto",   // 🔥 Maintains aspect ratio
+    maxHeight: "250px" // 🔥 Ensures it does not become too large on big screens
+  }}
+  initial={{ y: -50, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.5 }}
+  draggable="false"
+/>
+
         <img
           src="down.png"
           alt="Scroll Down Arrow"
