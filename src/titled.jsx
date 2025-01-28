@@ -1,7 +1,13 @@
 import React, { useState } from "react"; 
 import { motion } from "framer-motion";
 import Section from "./Section"; // Ensure this path is correct
-
+<style>
+  {`
+    body {
+      overflow-x: hidden; /* 🔥 Prevents sideways scrolling */
+    }
+  `}
+</style>
 const ProjectCard = ({ title, description, link, bgImage }) => {
   const [hovered, setHovered] = useState(false); // Track hover state
 
@@ -98,7 +104,7 @@ const ProjectCard = ({ title, description, link, bgImage }) => {
 
 const TitledWebsite = () => {
   return (
-    <div style={{ fontFamily: "sans-serif" }}>
+    <div style={{ fontFamily: "sans-serif", width: "100vw", overflowX: "hidden"  }}>
       {/* Header Section */}
       <header
         style={{
@@ -236,7 +242,7 @@ const TitledWebsite = () => {
 
 
       {/* About Section */}
-      <Section id="about" bgColor="black" textColor="white">
+      <Section id="about" bgColor="black" textColor="white" style={{ width: "100%", margin: "0 auto" }}>
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
         <p style={{ fontSize: "1.25rem" }}>
           TITLED is a graphic and brand design agency dedicated to creating bold,
@@ -246,7 +252,7 @@ const TitledWebsite = () => {
       </Section>
 
       {/* Past Works Section */}
-      <Section id="projects" bgColor="white" textColor="black">
+      <Section id="projects" bgColor="white" textColor="black" style={{ width: "100%", margin: "0 auto" }}>
       <style>
   {`
     @media (max-width: 768px) {
@@ -301,7 +307,7 @@ const TitledWebsite = () => {
 
     {/* Contact Section */}
 {/* Contact Section */}
-<Section id="contact" bgColor="black" textColor="white">
+<Section id="contact" bgColor="black" textColor="white" style={{ width: "100%", margin: "0 auto" }}>
   <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
   <p style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>
   Ready to elevate your brand? Get in{" "}
