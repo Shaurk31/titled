@@ -7,14 +7,15 @@ const ProjectCard = ({ title, description, link, bgImage }) => {
 
   return (
     <motion.div
-      style={{
-        position: "relative",
-        borderRadius: "0.5rem",
-        overflow: "hidden",
-        cursor: "pointer",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        height: "300px",
-      }}
+    style={{
+      position: "relative",
+      borderRadius: "0.5rem",
+      overflow: "hidden",
+      cursor: "pointer",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      height: "300px",
+      width: "100%", // 🔥 Forces the card to fill available space
+    }}
       whileHover={{ scale: 1.05 }} // Card hover effect only
       transition={{ type: "spring", stiffness: 300 }}
       onMouseEnter={() => setHovered(true)}
@@ -118,6 +119,7 @@ const TitledWebsite = () => {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
+          draggable="false"
         />
         <img
           src="down.png"
@@ -245,12 +247,27 @@ const TitledWebsite = () => {
 
       {/* Past Works Section */}
       <Section id="projects" bgColor="white" textColor="black">
+      <style>
+  {`
+    @media (max-width: 768px) {
+      #projects div {
+        display: grid;
+        grid-template-columns: 1fr; /* 🔥 Forces a single-column layout */
+        gap: 1rem;
+        justify-content: center;
+      }
+    }
+  `}
+</style>
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
             gap: "1.5rem",
+            width: "100%", // 🔥 Fixes alignment issues
+            maxWidth: "100%", 
+            justifyContent: "center", // 🔥 Centers the cards
           }}
         >
           <ProjectCard
