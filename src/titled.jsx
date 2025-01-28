@@ -109,6 +109,7 @@ const TitledWebsite = () => {
           backgroundColor: "white",
           color: "black",
           padding: "2rem",
+          alignItems: "center",
         }}
       >
         <motion.img
@@ -235,7 +236,7 @@ const TitledWebsite = () => {
 
 
       {/* About Section */}
-      <Section id="about" bgColor="black" textColor="white">
+      <Section id="about" bgColor="black" textColor="white" style={{ width: "100%", maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
         <p style={{ fontSize: "1.25rem" }}>
           TITLED is a graphic and brand design agency dedicated to creating bold,
@@ -245,7 +246,7 @@ const TitledWebsite = () => {
       </Section>
 
       {/* Past Works Section */}
-      <Section id="projects" bgColor="white" textColor="black">
+      <Section id="projects" bgColor="white" textColor="black" style={{ width: "100%", maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
         <div
           style={{
@@ -285,7 +286,7 @@ const TitledWebsite = () => {
 
     {/* Contact Section */}
 {/* Contact Section */}
-<Section id="contact" bgColor="black" textColor="white">
+<Section id="contact" bgColor="black" textColor="white" style={{ width: "100%", maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
   <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem" }}></h2>
   <p style={{ fontSize: "1.25rem", marginBottom: "1rem" }}>
   Ready to elevate your brand? Get in{" "}
