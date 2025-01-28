@@ -97,7 +97,7 @@ const ProjectCard = ({ title, description, link, bgImage }) => {
 
 const TitledWebsite = () => {
   return (
-    <div style={{ fontFamily: "sans-serif" }}>
+    <div style={{ fontFamily: "sans-serif" , width: "100vw"}}>
       {/* Header Section */}
       <header
         style={{
