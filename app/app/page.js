@@ -192,13 +192,14 @@ export default function Home() {
   <div className="max-w-6xl mx-auto px-6 text-center">
     <h2 className="text-5xl font-bold mb-4">Let’s Collaborate</h2>
     <p className="text-lg text-gray-600 mb-8">
-  Have an idea? Let’s bring it to life through bold design and creative direction. <br />
+  Ready to elevate your brand? Get in{" "}
   <a
     href="mailto:titled.designs@gmail.com"
     className="text-black font-semibold underline hover:text-gray-700 transition"
   >
-    Get in touch with us
+    touch
   </a>
+   {" "}with us to discuss your next project.
 </p>
 
   </div>
